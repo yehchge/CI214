@@ -41,9 +41,18 @@
 //$route['default_controller'] = "welcome";
 //$route['404_override'] = '';
 
+$route['student'] = 'student';
+$route['student/index'] = 'student/index';
+$route['student/add'] = 'student/add';
+$route['student/edit/(:any)'] = 'student/edit/$1';
+$route['student/update'] = 'student/update';
+$route['student/delete'] = 'student/delete';
+$route['student/delete/(:any)'] = 'student/delete/$1';
+$route['student/create'] = 'student/create';
+$route['student/listing'] = 'student/listing';
 $route['links'] = 'links';
 $route['news/create'] = 'news/create';
-$route['news/(:any)'] = 'news/view/$1';
+$route['news/view/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = "pages/view";
