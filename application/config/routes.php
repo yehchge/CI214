@@ -38,10 +38,10 @@
 |
 */
 
-//$route['default_controller'] = "welcome";
-//$route['404_override'] = '';
+$route['default_controller'] = "index";
+$route['404_override'] = '';
 
-$route['student'] = 'student';
+/*$route['student'] = 'student';
 $route['student/index'] = 'student/index';
 $route['student/add'] = 'student/add';
 $route['student/edit/(:any)'] = 'student/edit/$1';
@@ -55,7 +55,7 @@ $route['news/create'] = 'news/create';
 $route['news/view/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 $route['(:any)'] = 'pages/view/$1';
-$route['default_controller'] = "pages/view";
+$route['default_controller'] = "pages/view";*/
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
