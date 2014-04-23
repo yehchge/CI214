@@ -11,6 +11,8 @@
 		// nav bar
 		echo anchor('/', 'Home');
 		echo (' | ');
+		echo anchor('blog', 'Blog');
+		echo (' | ');
 		echo anchor('links', 'Links');
 		echo (' | ');
 		echo anchor('news', 'News');
@@ -18,6 +20,8 @@
 		echo anchor('student', 'Student');
 		echo (' | ');
 		echo anchor('pages/view', 'Pages');
+		echo (' | ');
+		echo anchor('yii', 'Yii');
 		echo (' | ');
 		echo anchor('welcome', 'Default CodeIgniter Page');
 	?>

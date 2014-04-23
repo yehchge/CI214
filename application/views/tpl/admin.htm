@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{$title}</title>
+  <!-- blueprint CSS framework -->
+	<link rel="stylesheet" type="text/css" href="{$base_url}/application/views/css/screen.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="{$base_url}/application/views/css/print.css" media="print" />
+	<!--[if lt IE 8]>
+	<link rel="stylesheet" type="text/css" href="{$base_url}/application/views/css/ie.css" media="screen, projection" />
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="{$base_url}/application/views/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="{$base_url}/application/views/css/form.css" />
+	<link rel="stylesheet" type="text/css" href="{$base_url}/application/views/css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="{$base_url}/application/views/css/pager.css" />
+</head>
+<body>
+  <div class="container" id="page">
+    <div id="header"><!-- 網站名稱 -->
+	  <div id="logo">部落格展示</div>
+	</div>
+	
+	<div id="mainmenu">
+	  <ul>
+		<li><a href="{$base_url}">首頁</a></li>
+		<li><a href="{$base_url}index.php/about">關於</a></li>
+		<li><a href="{$base_url}index.php/contact">聯絡</a></li>
+		<li>
+		  {if $smarty.cookies.username}
+			<a href="{$base_url}index.php/logout">登出({$smarty.cookies.username})</a>
+		  {else}
+			<a href="{$base_url}index.php/login">登入</a>
+		  {/if}	
+		</li>
+	  </ul>	
+	</div><!-- mainmenu -->
+	
+	<div class="breadcrumbs">
+	   <a href="{$base_url}">首頁</a> &raquo; <span>管理文章</span>
+	</div><!-- breadcrumbs -->
+	
+	<div class="container">
+	  <div class="span-18">
+	    <div id="content">
+		  <h1>管理文章</h1>
+		  
+		  <div id="yw0" class="grid-view">
+		  
+			<div class="summary">顯示 {$now_first}-{$now_last} 共 {$total_count} 筆.</div>
+			
+			<table class="items">
+			  <thead>
+			  <tr>
+				<th id="yw0_c0"><a class="sort-link {$title|escape}" href="{$base_url}index.php/post/admin/title/{$order}/{$before_count}">標題</a></th>
+				<th id="yw0_c1"><a class="sort-link {$status|escape}" href="{$base_url}index.php/post/admin/status/{$order}/{$before_count}">狀態</a></th>
+				<th id="yw0_c2"><a class="sort-link {$create_time|escape}" href="{$base_url}index.php/post/admin/create_time/{$order}/{$before_count}">建立日期</a></th>
+				<th id="yw0_c3" class="button-column">&nbsp;</th>
+			  </tr>
+			  <tr class="filters">
+				<td><input name="Post[title]" type="text" maxlength="128" /></td>
+				<td><select name="Post[status]">
+					  <option value=""></option>
+					  <option value="1">草稿</option>
+					  <option value="2">發佈</option>
+					  <option value="3">存檔</option>
+					</select>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			  </tr>
+			  </thead>
+			  <tbody>
+			  {foreach from=$blogs item="entry" name="foo"}
+			  <tr class="{if $smarty.foreach.foo.index % 2 == 0} even {else}odd {/if}">
+				<td><a href="{$base_url}index.php/index/post/{$entry.id}">{$entry.title|escape}</a></td>
+				<td>
+				  {if $entry.status==1}草稿
+				  {elseif $entry.status==2}發佈
+				  {elseif $entry.status==3}存檔
+				  {else}-
+				  {/if}
+				</td>
+				<td>{$entry.create_time|date_format:"%Y/%m/%d %I:%M:%S %p"}</td>
+				<td class="button-column">
+				  <a class="view" title="View" href="{$base_url}index.php/index/post/{$entry.id}"><img border=0 src="{$base_url}/application/views/css/view.png" alt="View" /></a> 
+				  <a class="update" title="Update" href="{$base_url}index.php/post/update/{$entry.id}"><img border=0 src="{$base_url}/application/views/css/update.png" alt="Update" /></a>  
+				  <a class="delete" title="Delete" href="{$base_url}index.php/post/delete/{$entry.id}/{$before_count}/{$now_sort}/{$now_order}" onClick="return confirm('你確定要刪除這筆資料嗎?');"><img border=0 src="{$base_url}/application/views/css/delete.png" alt="Delete" /></a>
+				</td>
+			  </tr>
+			  {/foreach}
+			  
+			  </tbody>
+			</table>
+			
+			<!-- 分頁 開始 -->
+			<div class="pager">選擇頁面：{$page_string}</div>
+			<!-- 分頁 結束 -->
+			
+		  </div>				  
+			
+		</div><!-- content -->
+	  </div>
+	  
+		<div class="span-6 last">
+		  <div id="sidebar"><!-- sidebar -->
+		  
+			{if $smarty.cookies.username}
+			<div class="portlet" id="yw2">
+			  <div class="portlet-decoration">
+				<div class="portlet-title">{$smarty.cookies.username}</div>
+			  </div>
+			  <div class="portlet-content">
+				<ul>
+				  <li><a href="{$base_url}index.php/post/create">建立新文章</a></li>
+				  <li><a href="{$base_url}index.php/post/admin">管理文章</a></li>
+				  <li><a href="{$base_url}index.php/comment">需要批准的評論</a> ({$approve_count|escape})</li>
+				  <li><a href="{$base_url}index.php/logout">登出</a></li>
+				</ul>
+			  </div>
+			</div>
+			{/if}
+		  
+			<div class="portlet">
+			  <div class="portlet-decoration">
+				<div class="portlet-title">標籤</div>
+			  </div>
+			  <div class="portlet-content">
+				{foreach from=$tagData item="entry4" name="foo4"}
+				<span class="tag" style="font-size:{$entry4.font_size}pt"><a href="{$base_url}index.php/posts/index/{$entry4.id|escape}">{$entry4.name|escape}</a></span>
+				{/foreach}
+			  </div>
+			</div>
+			
+			<div class="portlet" id="yw3">
+			  <div class="portlet-decoration">
+				<div class="portlet-title">最近的評論</div>
+			  </div>
+			  <div class="portlet-content">
+				<ul>
+				  {foreach from=$recent item="entry2" name="foo2"}
+				  <li>{$entry2.author|escape} on <a href="{$base_url}index.php/index/post/{$entry2.post_id|escape}#c{$entry2.id|escape}">{$entry2.title|escape}</a></li>
+				  {/foreach}
+				</ul>
+			  </div>
+			</div>
+			
+		  </div><!-- sidebar -->
+		</div>
+	</div>
+	
+	<div id="footer">Copyright &copy; 2012 - All Rights Reserved. - Powered by <a target="_BLANK" href="http://www.codeigniter.org.tw">CodeIgniter</a></div><!-- footer -->
+  </div><!-- page -->
+</body>
+</html>
