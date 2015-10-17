@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "index";
 $route['404_override'] = '';
+$route['translate_uri_dashes'] = TRUE; // for Restful param
 
 /*$route['student'] = 'student';
 $route['student/index'] = 'student/index';
@@ -56,6 +57,14 @@ $route['news/view/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = "pages/view";*/
+
+/*
+| -------------------------------------------------------------------------
+| Sample REST API Routes
+| -------------------------------------------------------------------------
+*/
+$route['api/example/users/(:num)'] = 'api/example/users/id/$1'; // Example 4
+$route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/id/$1/format/$3$4'; // Example 8
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

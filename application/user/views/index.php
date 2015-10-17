@@ -23,6 +23,8 @@
 		echo (' | ');
 		echo anchor('yii', 'Yii');
 		echo (' | ');
+		echo anchor ('rest_server', 'Restful');
+		echo (' | ');
 		echo anchor('welcome', 'Default CodeIgniter Page');
 	?>
 	</div>

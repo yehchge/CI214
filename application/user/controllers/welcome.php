@@ -19,6 +19,8 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this->load->helper('url'); // TODO: Restful 測試用，之後如果不用可以移除
+		
 		$this->load->view('welcome_message');
 	}
 }
